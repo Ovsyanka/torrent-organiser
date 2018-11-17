@@ -7,8 +7,52 @@
 
 ### Перенести все раздачи из utorrent в deluge
 
-В идеале хорошо-бы в перспективе сделать перенос торрентов между любыми сочетаниями торрент-клиентов.
+В идеале хорошо-бы в перспективе сделать перенос торрентов между любыми сочетаниями торрент-клиентов. Но сейчас моя основная задача в том, чтобы просто перенести раздачи и нужно выбрать самый простой вариант. Я думаю, что проще всего обработать resume.dat таким образом, чтобы в нем были корректные пути ко всем файлам (torrent файлы и файлы раздач) и импортнуть его в deluge существующими средставми (плагином).
 
 ### Перенести метки торрентов из utorrent в deluge
 
 Поскольку на данный момент нельзя устанавливать метки через консоль - тут надо придумывать какой-то обходной путь.
+
+### Определить файлы без торрентов
+
+Нужно найти все файлы в папке торрентов, которые не "зарегены" в торрент клиентах.
+Причем, торрент клиенты могут быть разными - utorrent, deluge, qbittorrent.
+
+То есть, для начала нужно написать скрипт, который может импортировать в БД (csv файл для начала?) список зарегенных торрентов и включенных в них файлов. И важно не просто путь к контенту, но так же и состав файлов, так как в папке могут быть созданы лишние файлы. Это может быть опциональным, так же как и проверка на совпадение хэшей.
+
+## Реализация
+
+## Структура проекта
+
+* https://docs.python-guide.org/writing/structure/
+* https://pypi.org/project/pygitrepo/ - в описании написано, что более хороший проект https://github.com/audreyr/cookiecutter
+
+### Создание проекта
+
+Я установил cookiecutter для создания шаблона проекта. Использую его.
+```
+cookiecutter gh:audreyr/cookiecutter-pypackage
+# На выбор можно попробовать
+# https://github.com/mdklatt/cookiecutter-python-app
+# cookiecutter https://github.com/xuanluong/cookiecutter-python-cli
+```
+
+### Выбор библиотеки cli
+
+* https://realpython.com/comparing-python-command-line-parsing-libraries-argparse-docopt-click/
+
+Я решил попробовать click, но в [других](https://www.reddit.com/r/Python/comments/73xb5y/click_reviews_should_i_migrate_to_click_from/) местах argparse как-будто больше советуют. Попробую его, если click не понравится.
+
+### Выбор БД
+
+Думаю, для начала воспользоваться tinyDb, так как это выглядит самым простым. Потом можно сделать опциональным выбор между tinyDb, sqlite3, mongodb и т.п.
+
+> To improve performance, you can install ujson , an extremely fast JSON implementation. TinyDB will auto-detect and use it if possible.
+
+## После релиза
+
+### Отписаться в этих темах
+
+* https://toster.ru/q/480091
+* https://www.reddit.com/r/trackers/comments/806zv1/switching_from_utorrent_to_qbittorrent_the_ez_way/
+*
