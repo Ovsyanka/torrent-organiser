@@ -29,13 +29,23 @@
 
 ### Создание проекта
 
-Я установил cookiecutter для создания шаблона проекта. Использую его.
+Я установил cookiecutter для создания шаблона проекта. Запустил и понял, что слишком много всего сгенерилось - я просто не знаю пока что с этим делать. Так что поместил пока в отдельную ветку - буду оттуда брать потихоньку то что нужно.
 ```
 cookiecutter gh:audreyr/cookiecutter-pypackage
 # На выбор можно попробовать
 # https://github.com/mdklatt/cookiecutter-python-app
 # cookiecutter https://github.com/xuanluong/cookiecutter-python-cli
 ```
+
+```
+python3 -m venv venv
+source venv/bin/activate
+```
+
+### Юнит-тестирвоание
+
+PyTest, без особо йпричины, просто первый попался.
+https://habr.com/post/269759/
 
 ### Выбор библиотеки cli
 
